@@ -2,178 +2,207 @@
 
 ## Project Overview
 
-This project focuses on analysing Indian economic data, particularly the Consumer Price Index (CPI), to understand inflation trends and changes in the prices of different goods and services.
+This project analyses Indian economic data, focusing on Consumer Price Index (CPI), inflation trends and Reserve Bank of India (RBI) monetary policy rates.
 
-Using Python and Data Science techniques, the project explores CPI data, identifies monthly and yearly inflation patterns, compares price changes across different divisions, and visualizes important economic trends.
+The project uses Python for data cleaning, exploratory data analysis, data visualization, statistical analysis and basic machine learning. It also explores the relationship between CPI inflation and the RBI Repo Rate and develops a simple Linear Regression model to forecast future CPI index values.
 
-The project uses real-world CPI data published by the Ministry of Statistics and Programme Implementation (MoSPI), Government of India.
+The objective is to understand inflation patterns in India and gain practical experience working with official economic datasets.
 
 ## Objectives
 
-- Analyse Indian Consumer Price Index (CPI) data.
-- Understand monthly and year-on-year inflation trends.
-- Identify the highest and lowest CPI changes.
-- Compare price index changes across different divisions.
-- Study correlations between CPI variables.
-- Visualize economic trends using charts and graphs.
-- Explore the potential for inflation forecasting.
+- Analyse Consumer Price Index (CPI) trends in India.
+- Study monthly changes in CPI.
+- Compare inflation between Rural and Urban sectors.
+- Analyse division-wise CPI trends.
+- Explore historical RBI monetary policy rates.
+- Examine the relationship between CPI inflation and the Repo Rate.
+- Build a basic Linear Regression model for CPI index forecasting.
 
-## Dataset Information
+## Datasets Used
 
-**Dataset:** Consumer Price Index (CPI), India
+### 1. Consumer Price Index (CPI)
 
-**Source:** Ministry of Statistics and Programme Implementation (MoSPI)
+- Source: Ministry of Statistics and Programme Implementation (MoSPI), Government of India.
+- Data period: January 2025 – October 2026.
+- Original dataset dimensions: 31,460 rows and 15 columns.
+- Filtered dataset: All India, Combined sector, CPI (General).
+- Selected analysis variables: Date, CPI Index and Inflation.
 
-**Website:** https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI
+### 2. RBI Policy Rates
 
-**Base Year:** 2024 = 100
+- Source: Reserve Bank of India (RBI).
+- Dataset contains historical monetary policy rates.
+- Variables include:
+  - Bank Rate
+  - Repo Rate
+  - Reverse Repo Rate
+  - Standing Deposit Facility (SDF)
+  - Marginal Standing Facility (MSF)
+  - Cash Reserve Ratio (CRR)
+  - Statutory Liquidity Ratio (SLR)
 
-**Data Period:** January 2025 – October 2026
-
-**Geographical Coverage:** All India
-
-**Sector:** Combined (Rural + Urban)
-
-The analysis focuses on the All India Combined CPI data.
-
-## Technologies Used
+## Technologies and Libraries
 
 - Python
 - Google Colab
-- Pandas – Data manipulation and analysis
-- NumPy – Numerical calculations
+- Pandas – Data manipulation and cleaning
+- NumPy – Numerical operations
 - Matplotlib – Data visualization
 - Seaborn – Statistical visualization
+- Scikit-learn – Machine learning and model evaluation
+- OpenPyXL – Excel file handling
 
 ## Project Workflow
 
-### 1. Data Collection
-Collected CPI data from the official MoSPI eSankhyiki portal.
+### 1. Data Collection and Cleaning
 
-### 2. Data Cleaning and Preprocessing
-- Inspected dataset structure and dimensions.
-- Checked missing values.
-- Checked duplicate records.
-- Selected relevant columns.
-- Filtered All India Combined CPI data.
-- Converted month and year into datetime format.
-- Sorted observations chronologically.
+- Imported CPI and RBI policy-rate datasets.
+- Inspected dataset structure, columns and data types.
+- Checked missing values and duplicate records.
+- Converted date columns into datetime format.
+- Converted economic variables into numeric format.
+- Handled missing policy-rate entries using forward filling.
+- Filtered CPI data for All India, Combined sector and CPI (General).
 
-### 3. Exploratory Data Analysis (EDA)
-- Examined descriptive statistics.
-- Analysed CPI index trends.
-- Studied monthly percentage changes.
-- Calculated year-on-year CPI changes.
-- Identified highest and lowest monthly movements.
+### 2. CPI Exploratory Data Analysis
 
-### 4. Correlation Analysis
-Examined relationships between:
-- CPI Index
-- Monthly Percentage Change
-- Year-on-Year Change
+- Analysed CPI index movements over time.
+- Calculated monthly percentage changes.
+- Studied inflation trends.
+- Identified higher and lower monthly changes.
+- Visualized CPI trends using line charts.
 
-Visualized the correlation matrix using a heatmap.
+### 3. Division-wise CPI Analysis
 
-### 5. Inflation Validation
-Calculated year-on-year CPI changes using a 12-month percentage change and compared them with officially published inflation figures.
+- Examined CPI movements across different divisions.
+- Calculated monthly percentage changes for each division.
+- Compared average monthly changes.
+- Identified divisions with higher and lower changes.
+- Studied variation in division-wise CPI movements.
 
-The mean absolute difference between the calculated and published values was approximately 0.00423 percentage points for the available overlapping observations.
+### 4. Rural vs Urban Inflation Analysis
 
-### 6. Division-Wise Analysis
-Compared CPI trends across 12 divisions, including:
+Compared CPI and inflation trends across Rural, Urban and Combined sectors.
 
-- Food and Beverages
-- Clothing and Footwear
-- Housing and Utilities
-- Health
-- Transport
-- Education Services
-- Restaurants and Accommodation
-- Personal Care and Miscellaneous Services
+Key observations for October 2026:
 
-Calculated average CPI index values and cumulative percentage changes for each division.
+| Indicator | Value |
+|---|---:|
+| Rural CPI Index | 110.73 |
+| Urban CPI Index | 109.22 |
+| Combined CPI Index | 110.05 |
+| Rural Inflation | 6.63% |
+| Urban Inflation | 5.41% |
+| Combined Inflation | 6.09% |
 
-### 7. Data Visualization
-Created visualizations to understand:
-- CPI index trends
-- Inflation trends
-- Monthly percentage changes
-- Correlation between CPI variables
-- Division-wise CPI comparisons
+The analysis showed higher inflation in the Rural sector than in the Urban sector for October 2026.
+
+### 5. RBI Monetary Policy Rate Analysis
+
+- Examined historical RBI policy-rate movements.
+- Calculated descriptive statistics such as mean, standard deviation, minimum and maximum.
+- Visualized changes in major interest rates.
+- Analysed Repo Rate movements.
+- Identified increases and decreases in the Repo Rate.
+
+The downloaded RBI dataset contained 70 recorded Repo Rate changes, including 35 increases and 35 decreases.
+
+### 6. CPI Inflation and Repo Rate Correlation
+
+Merged monthly CPI inflation data with RBI Repo Rate data using the latest effective policy rate available on or before each month's end.
+
+Calculated the Pearson correlation coefficient to explore the relationship between CPI inflation and the Repo Rate.
+
+**Correlation coefficient: 0.622**
+
+This indicates a moderate positive correlation in the selected observations. However, correlation does not imply causation.
+
+The analysis uses only 10 observations because year-on-year inflation values were unavailable for the first 12 months.
+
+### 7. CPI Index Forecasting Using Linear Regression
+
+Developed a basic Linear Regression model to analyse the CPI index trend and generate short-term exploratory forecasts.
+
+**Model approach:**
+
+- Independent variable: Numerical time sequence.
+- Dependent variable: CPI Index.
+- Total observations: 22 months.
+- Training dataset: First 18 months.
+- Testing dataset: Last 4 months.
+- Forecast horizon: Next 3 months.
+
+**Model equation:**
+
+CPI Index = Intercept + (Coefficient × Time)
+
+The model was evaluated using:
+
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+
+After evaluation, the model was trained again using all 22 observations to forecast the next three months.
+
+The forecast is a simple trend-based estimate and is not an official CPI prediction.
 
 ## Key Findings
 
-Based on the current dataset (January 2025 – October 2026):
+- The Combined CPI Index reached 110.05 in October 2026.
+- Combined inflation reached 6.09% in October 2026.
+- Rural inflation (6.63%) was higher than Urban inflation (5.41%) in October 2026.
+- The correlation between CPI inflation and the Repo Rate was 0.622.
+- A Linear Regression model was developed to study the CPI index trend and generate three-month exploratory forecasts.
 
-- The All India Combined CPI index reached 110.05 in October 2026.
-- Published CPI inflation reached 6.09% in October 2026.
-- The highest monthly CPI percentage increase was approximately 1.03% in June 2026.
-- The lowest monthly CPI percentage change was approximately -0.34% in February 2025.
-- Personal care and miscellaneous services recorded the highest cumulative CPI index increase, approximately 20.84%.
-- Information and communication recorded the lowest cumulative CPI index increase, approximately 3.30%.
+## Limitations
 
-These findings describe changes in the CPI index during the selected period and should not be interpreted as individual product price changes.
+- The CPI analysis is based on only 22 monthly observations.
+- Year-on-year inflation data is available for only 10 observations.
+- The correlation analysis has a limited sample size.
+- Simple Linear Regression does not account for seasonality, external economic factors or complex inflation dynamics.
+- The forecast results should not be considered official economic predictions.
+- The monthly alignment of CPI and RBI policy rates is a simplified analytical approach.
 
-## Repository Structure
+## Skills Demonstrated
+
+- Data Collection and Preprocessing
+- Data Cleaning
+- Exploratory Data Analysis (EDA)
+- Statistical Analysis
+- Data Visualization
+- Time-Series Trend Analysis
+- Correlation Analysis
+- Linear Regression
+- Model Evaluation
+- Working with Government Economic Data
+
+## Project Structure
 
 ```text
-indian-economic-data-analysis-inflation-forecasting/
+Indian-Economic-Data-Analysis/
 │
 ├── Data_collection.ipynb
 ├── README.md
-└── requirements.txt
 ```
 
 ## How to Run the Project
 
-1. Clone this repository:
+1. Clone or download this repository.
+2. Open Google Colab.
+3. Upload `Data_collection.ipynb`.
+4. Upload the required CPI and RBI Excel datasets to your Google Drive.
+5. Update the dataset file paths in the notebook if necessary.
+6. Run the notebook cells sequentially.
 
-```bash
-git clone https://github.com/alwinbshaji/indian-economic-data-analysis-inflation-forecasting.git
-```
+## Conclusion
 
-2. Open the project folder.
+This project provided practical experience in analysing Indian economic data using Python. It explored CPI and inflation trends, compared Rural and Urban inflation, examined RBI monetary policy rates and investigated their relationship with CPI inflation.
 
-3. Install the required libraries:
+A basic Linear Regression model was also implemented to study CPI index trends and generate short-term exploratory forecasts.
 
-```bash
-pip install pandas numpy matplotlib seaborn openpyxl
-```
-
-4. Open `Data_collection.ipynb` using Google Colab or Jupyter Notebook.
-
-5. Download the CPI dataset from the official MoSPI website.
-
-6. Upload the dataset to your Google Drive and update the dataset file path in the notebook.
-
-7. Run the notebook cells sequentially.
-
-## Current Limitations
-
-- The current dataset contains only 22 monthly observations.
-- A longer historical dataset is needed for reliable time-series forecasting.
-- Correlation does not establish causation.
-- Monthly CPI percentage changes are different from official year-on-year inflation rates.
-
-Forecasting is a planned extension of this project and should not be considered a validated prediction at the current stage.
-
-## Future Improvements
-
-- Include additional historical CPI data.
-- Perform state-wise and rural-versus-urban comparisons.
-- Explore time-series forecasting models.
-- Evaluate forecasting performance using suitable metrics.
-- Develop an interactive inflation dashboard.
-- Incorporate additional Indian economic indicators.
-
-## Author
-
-**Alwin B Shaji**
-
-B.Tech Computer Science and Engineering
-
-GitHub: https://github.com/alwinbshaji
+The project helped develop practical skills in data preprocessing, exploratory data analysis, statistical analysis, visualization and introductory machine learning while improving understanding of Indian economic indicators.
 
 ---
 
-*This project is developed for learning and portfolio purposes to explore real-world economic data analysis using Python and Data Science.*
+**Project Category:** Data Science | Economic Data Analysis | Machine Learning
+
+**Developed using:** Python and Google Colab
